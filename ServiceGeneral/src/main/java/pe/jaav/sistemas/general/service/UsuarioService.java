@@ -1,0 +1,17 @@
+package pe.jaav.sistemas.general.service;
+
+import java.util.List;
+
+import pe.jaav.sistemas.seguridadgeneral.model.domain.SysUsuario;
+
+public interface UsuarioService {
+	public int guardar(SysUsuario objUsuario);
+	public int actualizar(SysUsuario objUsuario);
+	public int eliminar(SysUsuario objUsuario);
+	
+	public SysUsuario obtenerLogin(String usuario,String clave);
+	
+	public SysUsuario obtenerPorID(Integer objUsuario);
+	public int contarListado(SysUsuario objUsuario);	
+	public List<SysUsuario> listar(SysUsuario objUsuario,boolean paginable);
+}
