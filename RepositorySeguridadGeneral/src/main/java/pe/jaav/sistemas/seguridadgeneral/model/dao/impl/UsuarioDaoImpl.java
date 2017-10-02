@@ -3,6 +3,8 @@ package pe.jaav.sistemas.seguridadgeneral.model.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -18,8 +20,9 @@ public class UsuarioDaoImpl extends AbstractDaoImpl<SysUsuario, Integer> impleme
 	}
 
 	public int guardar(SysUsuario objUsuario) {
-		save(objUsuario);
-		return 1;
+		return (int) getCurrentSession().save(objUsuario);
+		//save(objUsuario);
+		//return 1;
 	}
 
 	public int actualizar(SysUsuario objUsuario) {
@@ -32,20 +35,38 @@ public class UsuarioDaoImpl extends AbstractDaoImpl<SysUsuario, Integer> impleme
 		return 1;
 	}
 
-	public SysUsuario obtenerPorID(Integer objUsuario) {
-		// TODO Auto-generated method stub
-		return null;
+	public SysUsuario obtenerPorID(Integer id) {	
+		return findById(id);
 	}
 
 	public int contarListado(SysUsuario objUsuario) {
-		// TODO Auto-generated method stub
-		return 0;
+		Criteria criteria = getCurrentSession().createCriteria(SysUsuario.class);	
+		if (objUsuario.getUsuaUsuario() != null && objUsuario.getUsuaUsuario() != "") {
+			criteria.add(Restrictions.eq("usuaUsuario", objUsuario.getUsuaUsuario()));
+		}
+		if (objUsuario.getUsuaEstado()!= null && objUsuario.getUsuaEstado() != "") {
+			criteria.add(Restrictions.eq("usuaEstado", objUsuario.getUsuaEstado()));
+		}		
+		if (objUsuario.getUsuaNombre() != null && !"".equals(objUsuario.getUsuaNombre())) {
+			criteria.add(Restrictions.like("usuaNombre", objUsuario.getUsuaNombre(), MatchMode.ANYWHERE).ignoreCase());
+		}
+		criteria.setProjection(Projections.rowCount());
+		String obj = criteria.uniqueResult() != null ? criteria.uniqueResult().toString() : "0";
+		return Integer.parseInt(obj);
+		
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SysUsuario> listar(SysUsuario objUsuario,boolean paginable) {	
 		Criteria criteria = getCurrentSession().createCriteria(SysUsuario.class);	
 		if (objUsuario.getUsuaUsuario() != null && objUsuario.getUsuaUsuario() != "") {
 			criteria.add(Restrictions.eq("usuaUsuario", objUsuario.getUsuaUsuario()));
+		}
+		if (objUsuario.getUsuaEstado()!= null && objUsuario.getUsuaEstado() != "") {
+			criteria.add(Restrictions.eq("usuaEstado", objUsuario.getUsuaEstado()));
+		}			
+		if (objUsuario.getUsuaNombre() != null && !"".equals(objUsuario.getUsuaNombre())) {
+			criteria.add(Restrictions.like("usuaNombre", objUsuario.getUsuaNombre(), MatchMode.ANYWHERE).ignoreCase());
 		}
 		
 		if(paginable){

@@ -17,21 +17,25 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Autowired
 	UsuarioDao usuarioDao;
 
+	@Override
 	@Transactional(readOnly = false)
 	public int guardar(SysUsuario objUsuario) {		
 		return usuarioDao.guardar(objUsuario);
 	}
 
+	@Override
 	@Transactional(readOnly = false)
 	public int actualizar(SysUsuario objUsuario) {
 		return usuarioDao.actualizar(objUsuario);
 	}
 
+	@Override
 	@Transactional(readOnly = false)
 	public int eliminar(SysUsuario objUsuario) {
 		return usuarioDao.eliminar(objUsuario);
 	}
 
+	@Override
 	public SysUsuario obtenerPorID(Integer objUsuario) {
 		Object result =  usuarioDao.findById(objUsuario);
 		return result!=null?(SysUsuario)result:null;
@@ -65,6 +69,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return null;
 	}
 	
+	@Override
 	public int contarListado(SysUsuario objUsuario) {
 		try{
 			return usuarioDao.contarListado(objUsuario);	
@@ -74,6 +79,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return 0;
 	}
 
+	@Override
 	public List<SysUsuario> listar(SysUsuario objUsuario,boolean paginable) {
 		try{
 			return usuarioDao.listar(objUsuario,paginable);	
@@ -83,6 +89,20 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return null;
 	}
 
+	@Override
+	public SysUsuario obtenerPorCodigo(String usuario) {
+		try{
+			SysUsuario usuarioFilt = new SysUsuario();
+			usuarioFilt.setUsuaUsuario(usuario);	
+			List<SysUsuario> listaTemp =  usuarioDao.listar(usuarioFilt, false);
+			if(listaTemp!=null && listaTemp.size()>0){
+				return listaTemp.get(0);							
+			}			
+		}catch(Exception e){
+			e.printStackTrace();
+		}			
+		return null;
+	}
 
 
 }

@@ -12,6 +12,8 @@ public interface UsuarioService {
 	public SysUsuario obtenerLogin(String usuario,String clave);
 	
 	public SysUsuario obtenerPorID(Integer objUsuario);
+	public SysUsuario obtenerPorCodigo(String usuario);
+	
 	public int contarListado(SysUsuario objUsuario);	
 	public List<SysUsuario> listar(SysUsuario objUsuario,boolean paginable);
 }
