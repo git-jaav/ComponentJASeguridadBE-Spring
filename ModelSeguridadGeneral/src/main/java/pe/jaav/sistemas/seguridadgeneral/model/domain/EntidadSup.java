@@ -8,13 +8,16 @@ public class EntidadSup implements Serializable{
 
 	private int inicio;
 	private int numeroFilas;
-	private int numeroColumnas;
-	private boolean visibled;
+	private int numeroColumnas;			
+	private int contadorTotal;
 	
 	private int accionDB;
 	
 	private String valorStringSup;
 	private Integer valorIntSup;
+	private boolean valorBoolSup;
+	
+	
 	public int getInicio() {
 		return inicio;
 	}
@@ -33,12 +36,7 @@ public class EntidadSup implements Serializable{
 	public void setNumeroColumnas(int numeroColumnas) {
 		this.numeroColumnas = numeroColumnas;
 	}
-	public boolean isVisibled() {
-		return visibled;
-	}
-	public void setVisibled(boolean visibled) {
-		this.visibled = visibled;
-	}
+
 	public int getAccionDB() {
 		return accionDB;
 	}
@@ -57,6 +55,18 @@ public class EntidadSup implements Serializable{
 	}
 	public void setValorIntSup(Integer valorIntSup) {
 		this.valorIntSup = valorIntSup;
+	}
+	public int getContadorTotal() {
+		return contadorTotal;
+	}
+	public void setContadorTotal(int contadorTotal) {
+		this.contadorTotal = contadorTotal;
+	}
+	public boolean isValorBoolSup() {
+		return valorBoolSup;
+	}
+	public void setValorBoolSup(boolean valorBoolSup) {
+		this.valorBoolSup = valorBoolSup;
 	}
 	
 

@@ -1,6 +1,5 @@
 package pe.jaav.sistemas.seguridadgeneral.model.domain;
 
-import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 

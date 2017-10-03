@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.jaav.sistemas.general.service.UsuarioService;
+import pe.jaav.sistemas.general.service.utiles.Log;
 import pe.jaav.sistemas.seguridadgeneral.model.dao.UsuarioDao;
 import pe.jaav.sistemas.seguridadgeneral.model.domain.SysUsuario;
 
@@ -63,7 +64,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 				}
 			}			
 		}catch(Exception e){
-			e.printStackTrace();
+			Log.error(e, "obtenerLogin");		
 		}	
 		
 		return null;
@@ -74,7 +75,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		try{
 			return usuarioDao.contarListado(objUsuario);	
 		}catch(Exception e){
-			e.printStackTrace();
+			Log.error(e, "contarListado");		
 		}	
 		return 0;
 	}
@@ -84,7 +85,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		try{
 			return usuarioDao.listar(objUsuario,paginable);	
 		}catch(Exception e){
-			e.printStackTrace();
+			Log.error(e, "listar");		
 		}	
 		return null;
 	}
@@ -99,7 +100,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 				return listaTemp.get(0);							
 			}			
 		}catch(Exception e){
-			e.printStackTrace();
+			Log.error(e, "obtenerPorCodigo");			
 		}			
 		return null;
 	}
