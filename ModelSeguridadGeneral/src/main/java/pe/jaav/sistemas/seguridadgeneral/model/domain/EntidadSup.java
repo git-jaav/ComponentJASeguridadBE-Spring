@@ -11,7 +11,7 @@ public class EntidadSup implements Serializable{
 	private int numeroColumnas;			
 	private int contadorTotal;
 	
-	private int accionDB;
+	private String accionDB;
 	
 	private String valorStringSup;
 	private Integer valorIntSup;
@@ -37,10 +37,10 @@ public class EntidadSup implements Serializable{
 		this.numeroColumnas = numeroColumnas;
 	}
 
-	public int getAccionDB() {
+	public String getAccionDB() {
 		return accionDB;
 	}
-	public void setAccionDB(int accionDB) {
+	public void setAccionDB( String accionDB) {
 		this.accionDB = accionDB;
 	}
 	public String getValorStringSup() {
