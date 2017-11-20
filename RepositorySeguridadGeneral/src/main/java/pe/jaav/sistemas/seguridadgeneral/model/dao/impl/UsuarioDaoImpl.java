@@ -20,9 +20,9 @@ public class UsuarioDaoImpl extends AbstractDaoImpl<SysUsuario, Integer> impleme
 	}
 
 	public int guardar(SysUsuario objUsuario) {
-		return (int) getCurrentSession().save(objUsuario);
-		//save(objUsuario);
-		//return 1;
+		Object result = getCurrentSession().save(objUsuario);
+		return (int) (result!=null?result:0);
+
 	}
 
 	public int actualizar(SysUsuario objUsuario) {

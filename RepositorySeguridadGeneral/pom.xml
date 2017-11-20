@@ -41,12 +41,21 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!-- MODEL - DOMAIN -->
 		<dependency>
 			<groupId>pe.jaav.sistemas</groupId>
 			<artifactId>ModelSeguridadGeneral</artifactId>
 			<version>1.0</version>
 			<type>jar</type>
 		</dependency>		
+		
+		<!-- UTILES JA -->
+		<dependency>
+			<groupId>pe.jaav.common</groupId>
+			<artifactId>JACommon-Utiles</artifactId>
+			<version>1.0</version>
+			<type>jar</type>
+		</dependency>			
 				  
   </dependencies>
 	<build>

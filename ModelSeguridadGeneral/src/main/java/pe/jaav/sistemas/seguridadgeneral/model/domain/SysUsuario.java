@@ -12,7 +12,11 @@ import java.util.Date;
 @Table(name="sys_usuario")
 public class SysUsuario extends EntidadSup{
 	private static final long serialVersionUID = 1L;
+	
+	
+	
 	private Integer usuaId;
+	
 	private Date fechamodif;
 	private String usuaClave;
 	private String usuaEstado;
@@ -27,11 +31,13 @@ public class SysUsuario extends EntidadSup{
 
 
 	@Id
+	@GeneratedValue
 	@Column(name="usua_id")
 	public Integer getUsuaId() {
 		return this.usuaId;
 	}
 
+	
 	public void setUsuaId(Integer usuaId) {
 		this.usuaId = usuaId;
 	}

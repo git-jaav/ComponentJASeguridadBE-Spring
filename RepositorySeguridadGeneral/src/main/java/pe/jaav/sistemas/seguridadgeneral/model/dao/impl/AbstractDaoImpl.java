@@ -49,6 +49,7 @@ public abstract class AbstractDaoImpl<E, I extends Serializable> implements Abst
         iniciarAuditoriaTrace(e,"I","");
     }
 
+    
     //@Override
     public void delete(E e) {
         getCurrentSession().delete(e);
