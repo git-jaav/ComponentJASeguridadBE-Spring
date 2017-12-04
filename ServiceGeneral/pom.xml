@@ -28,7 +28,7 @@
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-test</artifactId>
-		    <version>2.5</version>
+		    <version>4.1.6.RELEASE</version>
 		    <scope>test</scope>
 		</dependency>
 		
@@ -38,7 +38,14 @@
 			<version>1.0</version>
 			<type>jar</type>
 		</dependency>	  
-  
+
+		<dependency>
+			<groupId>pe.jaav.common</groupId>
+			<artifactId>JASecurityCrypto-Utiles</artifactId>
+			<version>1.0</version>
+			<type>jar</type>
+		</dependency>	
+		  
   </dependencies>
 	<build>
 		<finalName>${pom.artifactId}</finalName>

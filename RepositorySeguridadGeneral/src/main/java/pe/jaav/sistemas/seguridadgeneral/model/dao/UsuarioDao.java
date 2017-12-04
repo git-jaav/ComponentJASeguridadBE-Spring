@@ -11,7 +11,7 @@ public interface UsuarioDao extends AbstractDao<SysUsuario, Integer> {
 	public int actualizar(SysUsuario objUsuario);
 	public int eliminar(SysUsuario objUsuario);
 	
-	public SysUsuario obtenerPorID(Integer id);
+	
 	public int contarListado(SysUsuario objUsuario);	
 	public List<SysUsuario> listar(SysUsuario objUsuario,boolean paginable);
 		

@@ -35,10 +35,6 @@ public class UsuarioDaoImpl extends AbstractDaoImpl<SysUsuario, Integer> impleme
 		return 1;
 	}
 
-	public SysUsuario obtenerPorID(Integer id) {	
-		return findById(id);
-	}
-
 	public int contarListado(SysUsuario objUsuario) {
 		Criteria criteria = getCurrentSession().createCriteria(SysUsuario.class);	
 		if (objUsuario.getUsuaUsuario() != null && objUsuario.getUsuaUsuario() != "") {
