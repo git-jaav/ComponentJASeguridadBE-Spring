@@ -31,7 +31,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public int guardar(SysUsuario objUsuario) {		
 		try{
 			/**Cifrar clave nueva**/			
-			objUsuario.setFechamodif(new Date());
+			objUsuario.setUsuaFechamodif(new Date());
 			if(objUsuario.getUsuaClave()!=null){
 				objUsuario.setUsuaClave(encriptacionService.getCifrado(objUsuario.getUsuaClave()));	
 			}
@@ -50,7 +50,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 			if(indicaCambioClave){
 				/**Cifrar clave nueva**/
 				objUsuario.setUsuaClave(encriptacionService.getCifrado(objUsuario.getUsuaClave()));
-				objUsuario.setFechamodif(new Date());
+				objUsuario.setUsuaFechamodif(new Date());
 			}			
 			return usuarioDao.actualizar(objUsuario);				
 		}catch(Exception e){

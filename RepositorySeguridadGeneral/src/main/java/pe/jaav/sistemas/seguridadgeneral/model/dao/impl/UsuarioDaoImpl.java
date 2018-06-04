@@ -8,6 +8,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import pe.jaav.common.util.UtilesCommons;
 import pe.jaav.sistemas.seguridadgeneral.model.dao.UsuarioDao;
 import pe.jaav.sistemas.seguridadgeneral.model.domain.SysUsuario;
 
@@ -35,17 +36,8 @@ public class UsuarioDaoImpl extends AbstractDaoImpl<SysUsuario, Integer> impleme
 		return 1;
 	}
 
-	public int contarListado(SysUsuario objUsuario) {
-		Criteria criteria = getCurrentSession().createCriteria(SysUsuario.class);	
-		if (objUsuario.getUsuaUsuario() != null && objUsuario.getUsuaUsuario() != "") {
-			criteria.add(Restrictions.eq("usuaUsuario", objUsuario.getUsuaUsuario()));
-		}
-		if (objUsuario.getUsuaEstado()!= null && objUsuario.getUsuaEstado() != "") {
-			criteria.add(Restrictions.eq("usuaEstado", objUsuario.getUsuaEstado()));
-		}		
-		if (objUsuario.getUsuaNombre() != null && !"".equals(objUsuario.getUsuaNombre())) {
-			criteria.add(Restrictions.like("usuaNombre", objUsuario.getUsuaNombre(), MatchMode.ANYWHERE).ignoreCase());
-		}
+	public int contarListado(SysUsuario objDao) {
+		Criteria criteria = getCriteriaFilter(objDao);
 		criteria.setProjection(Projections.rowCount());
 		String obj = criteria.uniqueResult() != null ? criteria.uniqueResult().toString() : "0";
 		return Integer.parseInt(obj);
@@ -53,24 +45,31 @@ public class UsuarioDaoImpl extends AbstractDaoImpl<SysUsuario, Integer> impleme
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<SysUsuario> listar(SysUsuario objUsuario,boolean paginable) {	
-		Criteria criteria = getCurrentSession().createCriteria(SysUsuario.class);	
-		if (objUsuario.getUsuaUsuario() != null && objUsuario.getUsuaUsuario() != "") {
-			criteria.add(Restrictions.eq("usuaUsuario", objUsuario.getUsuaUsuario()));
-		}
-		if (objUsuario.getUsuaEstado()!= null && objUsuario.getUsuaEstado() != "") {
-			criteria.add(Restrictions.eq("usuaEstado", objUsuario.getUsuaEstado()));
-		}			
-		if (objUsuario.getUsuaNombre() != null && !"".equals(objUsuario.getUsuaNombre())) {
-			criteria.add(Restrictions.like("usuaNombre", objUsuario.getUsuaNombre(), MatchMode.ANYWHERE).ignoreCase());
-		}
-		
+	public List<SysUsuario> listar(SysUsuario objDao,boolean paginable) {	
+		Criteria criteria = getCriteriaFilter(objDao);				
 		if(paginable){
-			criteria.setFirstResult(objUsuario.getInicio());
-			criteria.setMaxResults(objUsuario.getNumeroFilas());
-			criteria.setFetchSize(objUsuario.getNumeroFilas());			
+			setPaginable(objDao, criteria);				
 		}
 		return criteria.list();				
+	}
+
+	@Override
+	public Criteria getCriteriaFilter(Object objDaoGen) {
+		Criteria criteria = null;
+		if(objDaoGen instanceof SysUsuario){
+			SysUsuario objDao = (SysUsuario)objDaoGen;
+			criteria = getCurrentSession().createCriteria(SysUsuario.class);	
+			if (UtilesCommons.noEsVacio(objDao.getUsuaUsuario())) {
+				criteria.add(Restrictions.eq("usuaUsuario", objDao.getUsuaUsuario()));
+			}
+			if (UtilesCommons.noEsVacio(objDao.getUsuaEstado())) {
+				criteria.add(Restrictions.eq("usuaEstado", objDao.getUsuaEstado()));
+			}		
+			if (UtilesCommons.noEsVacio(objDao.getUsuaNombre())) {
+				criteria.add(Restrictions.like("usuaNombre", objDao.getUsuaNombre(), MatchMode.ANYWHERE).ignoreCase());
+			}
+		}
+		return criteria;
 	}
 
 }

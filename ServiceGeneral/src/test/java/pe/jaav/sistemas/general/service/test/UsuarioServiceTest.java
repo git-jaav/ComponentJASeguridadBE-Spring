@@ -31,8 +31,8 @@ public class UsuarioServiceTest extends ServiceTest {
 		System.out.println("[***** TEST FECHA ******] ::"+UtilesCommons.printDate("yyyy-MM-dd", new Date()));
 		//listarUsuario();
 		//guardarUsuario();
-		//cifrarClave();
-		validarLogin();
+		cifrarClave();
+		//validarLogin();
 		//actualizarUsuario();
 		
 		System.out.println("[***** TEST FIN ******]");
@@ -50,7 +50,7 @@ public class UsuarioServiceTest extends ServiceTest {
 	}
 
 	public void cifrarClave(){
-		String original = null;
+		String original = "1234";
 		System.out.println("[TEST:::original:]"+original);
 		String cifrado = encriptacionService.getCifrado(original);
 		System.out.println("[TEST:::cifrado:]"+cifrado);

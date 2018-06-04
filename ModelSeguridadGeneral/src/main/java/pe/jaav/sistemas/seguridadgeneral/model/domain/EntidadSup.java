@@ -10,6 +10,7 @@ public class EntidadSup implements Serializable{
 	private int numeroFilas;
 	private int numeroColumnas;			
 	private int contadorTotal;
+	private boolean paginable = false;// INDICA SI LA CONSULTA SERA PAGINADA
 	
 	private String accionDB;
 	
@@ -67,6 +68,12 @@ public class EntidadSup implements Serializable{
 	}
 	public void setValorBoolSup(boolean valorBoolSup) {
 		this.valorBoolSup = valorBoolSup;
+	}
+	public boolean isPaginable() {
+		return paginable;
+	}
+	public void setPaginable(boolean paginable) {
+		this.paginable = paginable;
 	}
 	
 

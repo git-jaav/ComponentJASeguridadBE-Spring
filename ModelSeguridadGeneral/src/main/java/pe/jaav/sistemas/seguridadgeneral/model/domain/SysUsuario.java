@@ -8,24 +8,31 @@ import java.util.Date;
  * The persistent class for the sys_usuario database table.
  * 
  */
+/**
+ * @author JAAV
+ *
+ */
 @Entity
 @Table(name="sys_usuario")
+@NamedQuery(name="SysUsuario.findAll", query="SELECT s FROM SysUsuario s")
 public class SysUsuario extends EntidadSup{
 	private static final long serialVersionUID = 1L;
-	
-	
-	
 	private Integer usuaId;
-	
-	private Date fechamodif;
+	private Integer personaId;
 	private String usuaClave;
 	private String usuaEstado;
+	private Date usuaFechamodif;
 	private String usuaNombre;
 	private String usuaUsuario;
-	private String usuariomodif;
-
-	private Integer personaId;
+	private String usuaUsuariomodif;
 	
+	private String usuaFlagExpirar;
+	private Date usuaFechaExpiracion;
+	private String usuaFlagIneditable;
+		
+	//private List<SysSesion> sysSesions;
+	//private List<SysUsuarioAsignado> sysUsuarioAsignados;
+
 	public SysUsuario() {
 	}
 
@@ -37,11 +44,19 @@ public class SysUsuario extends EntidadSup{
 		return this.usuaId;
 	}
 
-	
 	public void setUsuaId(Integer usuaId) {
 		this.usuaId = usuaId;
 	}
 
+
+	@Column(name="persona_id")
+	public Integer getPersonaId() {
+		return this.personaId;
+	}
+
+	public void setPersonaId(Integer personaId) {
+		this.personaId = personaId;
+	}
 
 
 	@Column(name="usua_clave")
@@ -61,6 +76,16 @@ public class SysUsuario extends EntidadSup{
 
 	public void setUsuaEstado(String usuaEstado) {
 		this.usuaEstado = usuaEstado;
+	}
+
+	
+	@Column(name="usua_fechamodif")
+	public Date getUsuaFechamodif() {
+		return this.usuaFechamodif;
+	}
+
+	public void setUsuaFechamodif(Date usuaFechamodif) {
+		this.usuaFechamodif = usuaFechamodif;
 	}
 
 
@@ -83,36 +108,94 @@ public class SysUsuario extends EntidadSup{
 		this.usuaUsuario = usuaUsuario;
 	}
 
-	@Column(name="fechamodif")
-	public Date getFechamodif() {
-		return fechamodif;
+
+	@Column(name="usua_usuariomodif")
+	public String getUsuaUsuariomodif() {
+		return this.usuaUsuariomodif;
+	}
+
+	public void setUsuaUsuariomodif(String usuaUsuariomodif) {
+		this.usuaUsuariomodif = usuaUsuariomodif;
+	}
+
+	@Column(name="usua_flag_expirar")
+	public String getUsuaFlagExpirar() {
+		return usuaFlagExpirar;
 	}
 
 
-	public void setFechamodif(Date fechamodif) {
-		this.fechamodif = fechamodif;
+	public void setUsuaFlagExpirar(String usuaFlagExpirar) {
+		this.usuaFlagExpirar = usuaFlagExpirar;
 	}
 
-	@Column(name="usuariomodif")
-	public String getUsuariomodif() {
-		return usuariomodif;
-	}
-
-
-	public void setUsuariomodif(String usuariomodif) {
-		this.usuariomodif = usuariomodif;
-	}
-
-	@Column(name="persona_id")
-	public Integer getPersonaId() {
-		return personaId;
+	@Column(name="usua_fechaexpiracion")
+	public Date getUsuaFechaExpiracion() {
+		return usuaFechaExpiracion;
 	}
 
 
-	public void setPersonaId(Integer personaId) {
-		this.personaId = personaId;
+	public void setUsuaFechaExpiracion(Date usuaFechaExpiracion) {
+		this.usuaFechaExpiracion = usuaFechaExpiracion;
+	}
+
+	@Column(name="usua_flag_ineditable")
+	public String getUsuaFlagIneditable() {
+		return usuaFlagIneditable;
 	}
 
 
+	public void setUsuaFlagIneditable(String usuaFlagIneditable) {
+		this.usuaFlagIneditable = usuaFlagIneditable;
+	}		
+	
+	
+	//bi-directional many-to-one association to SysSesion
+//	@OneToMany(mappedBy="sysUsuario")
+//	public List<SysSesion> getSysSesions() {
+//		return this.sysSesions;
+//	}
+//
+//	public void setSysSesions(List<SysSesion> sysSesions) {
+//		this.sysSesions = sysSesions;
+//	}
+//
+//	public SysSesion addSysSesion(SysSesion sysSesion) {
+//		getSysSesions().add(sysSesion);
+//		sysSesion.setSysUsuario(this);
+//
+//		return sysSesion;
+//	}
+//
+//	public SysSesion removeSysSesion(SysSesion sysSesion) {
+//		getSysSesions().remove(sysSesion);
+//		sysSesion.setSysUsuario(null);
+//
+//		return sysSesion;
+//	}
+
+
+	//bi-directional many-to-one association to SysUsuarioAsignado
+//	@OneToMany(mappedBy="sysUsuario")
+//	public List<SysUsuarioAsignado> getSysUsuarioAsignados() {
+//		return this.sysUsuarioAsignados;
+//	}
+//
+//	public void setSysUsuarioAsignados(List<SysUsuarioAsignado> sysUsuarioAsignados) {
+//		this.sysUsuarioAsignados = sysUsuarioAsignados;
+//	}
+//
+//	public SysUsuarioAsignado addSysUsuarioAsignado(SysUsuarioAsignado sysUsuarioAsignado) {
+//		getSysUsuarioAsignados().add(sysUsuarioAsignado);
+//		sysUsuarioAsignado.setSysUsuario(this);
+//
+//		return sysUsuarioAsignado;
+//	}
+//
+//	public SysUsuarioAsignado removeSysUsuarioAsignado(SysUsuarioAsignado sysUsuarioAsignado) {
+//		getSysUsuarioAsignados().remove(sysUsuarioAsignado);
+//		sysUsuarioAsignado.setSysUsuario(null);
+//
+//		return sysUsuarioAsignado;
+//	}
 
 }

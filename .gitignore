@@ -28,3 +28,4 @@ nbdist/
 .recommenders/
 RemoteSystemsTempFiles/
 Servers/
+JPA-Map/
