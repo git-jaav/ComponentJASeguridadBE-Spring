@@ -20,7 +20,9 @@ public class SysRol extends EntidadSup{
 	private String rolCodigo;
 	
 	private String rolFlagIneditable;	
-		
+	
+	//private Integer fkOrgmId;
+	
 	private SysOrgaModulo sysOrgaModulo = new SysOrgaModulo();	
 
 	public SysRol() {
@@ -109,6 +111,17 @@ public class SysRol extends EntidadSup{
 	public void setRolFlagIneditable(String rolFlagIneditable) {
 		this.rolFlagIneditable = rolFlagIneditable;
 	}
+
+	
+//	@Column(name="fk_orgm_id")
+//	public Integer getFkOrgmId() {
+//		return fkOrgmId;
+//	}
+//
+//
+//	public void setFkOrgmId(Integer fkOrgmId) {
+//		this.fkOrgmId = fkOrgmId;
+//	}
 
 
 }

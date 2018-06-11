@@ -72,7 +72,7 @@ public class SysUsuarioAsignado extends EntidadSup {
 
 	//bi-directional many-to-one association to SysRol
 	@ManyToOne
-	@JoinColumn(name = "fk_rol_id", referencedColumnName = "rolId", insertable = false, updatable = false, nullable = true)
+	@JoinColumn(name = "fk_rol_id", referencedColumnName = "rol_id", insertable = false, updatable = false, nullable = true)
 	@NotFound(action = NotFoundAction.IGNORE)
 	//@JoinColumn(name="fk_rol_id")
 	public SysRol getSysRol() {
