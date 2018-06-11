@@ -1,6 +1,10 @@
 package pe.jaav.sistemas.seguridadgeneral.model.domain;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import java.util.Date;
 
 
@@ -17,10 +21,12 @@ public class SysUsuarioAsignado extends EntidadSup {
 	private String usasigEstado;
 	private Date usasigFechamodif;
 	private String usasigUsuaromodif;
-	//private SysRol sysRol;
+	private SysRol sysRol;
 	//private SysUsuario sysUsuario;
 
 	public SysUsuarioAsignado() {
+		sysRol = new SysRol();
+		id = new SysUsuarioAsignadoPK();
 	}
 
 
@@ -65,18 +71,20 @@ public class SysUsuarioAsignado extends EntidadSup {
 
 
 	//bi-directional many-to-one association to SysRol
-//	@ManyToOne
-//	@JoinColumn(name="fk_rol_id")
-//	public SysRol getSysRol() {
-//		return this.sysRol;
-//	}
-//
-//	public void setSysRol(SysRol sysRol) {
-//		this.sysRol = sysRol;
-//	}
-//
-//
-//	//bi-directional many-to-one association to SysUsuario
+	@ManyToOne
+	@JoinColumn(name = "fk_rol_id", referencedColumnName = "rolId", insertable = false, updatable = false, nullable = true)
+	@NotFound(action = NotFoundAction.IGNORE)
+	//@JoinColumn(name="fk_rol_id")
+	public SysRol getSysRol() {
+		return this.sysRol;
+	}
+
+	public void setSysRol(SysRol sysRol) {
+		this.sysRol = sysRol;
+	}
+
+
+	//bi-directional many-to-one association to SysUsuario
 //	@ManyToOne
 //	@JoinColumn(name="fk_usua_id")
 //	public SysUsuario getSysUsuario() {
