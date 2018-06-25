@@ -18,6 +18,8 @@ public class EntidadSup implements Serializable{
 	private Integer valorIntSup;
 	private boolean valorBoolSup;
 	
+	private String tokenSecurity;
+	
 	
 	public int getInicio() {
 		return inicio;
@@ -74,6 +76,12 @@ public class EntidadSup implements Serializable{
 	}
 	public void setPaginable(boolean paginable) {
 		this.paginable = paginable;
+	}
+	public String getTokenSecurity() {
+		return tokenSecurity;
+	}
+	public void setTokenSecurity(String tokenSecurity) {
+		this.tokenSecurity = tokenSecurity;
 	}
 	
 
