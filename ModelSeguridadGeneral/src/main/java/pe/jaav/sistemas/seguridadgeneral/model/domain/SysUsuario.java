@@ -1,6 +1,9 @@
 package pe.jaav.sistemas.seguridadgeneral.model.domain;
 
 import javax.persistence.*;
+
+import pe.jaav.sistemas.seguridadgeneral.model.utiles.Constant;
+
 import java.util.Date;
 
 
@@ -29,6 +32,9 @@ public class SysUsuario extends EntidadSup{
 	private String usuaFlagExpirar;
 	private Date usuaFechaExpiracion;
 	private String usuaFlagIneditable;
+	
+	private boolean usuaFlagExpirarBool;
+	private boolean usuaFlagIneditableBool;
 		
 	//private List<SysSesion> sysSesions;
 	//private List<SysUsuarioAsignado> sysUsuarioAsignados;
@@ -146,6 +152,47 @@ public class SysUsuario extends EntidadSup{
 
 	public void setUsuaFlagIneditable(String usuaFlagIneditable) {
 		this.usuaFlagIneditable = usuaFlagIneditable;
+	}
+
+	@Transient
+	public boolean isUsuaFlagExpirarBool() {
+		if(Constant.SI_db.equals(usuaFlagExpirar)){
+			usuaFlagExpirarBool = true;
+		}else{
+			usuaFlagExpirarBool = false;
+		}
+		return usuaFlagExpirarBool;
+	}
+
+
+	public void setUsuaFlagExpirarBool(boolean usuaFlagExpirarBool) {
+		if(usuaFlagExpirarBool){
+			setUsuaFlagExpirar(Constant.SI_db);
+		}else{
+			setUsuaFlagExpirar(Constant.NO_db);
+		}
+		this.usuaFlagExpirarBool = usuaFlagExpirarBool;
+	}
+
+
+	@Transient
+	public boolean isUsuaFlagIneditableBool() {
+		if(Constant.SI_db.equals(usuaFlagIneditable)){
+			usuaFlagIneditableBool = true;
+		}else{
+			usuaFlagIneditableBool = false;
+		}			
+		return usuaFlagIneditableBool;
+	}
+
+
+	public void setUsuaFlagIneditableBool(boolean usuaFlagIneditableBool) {
+		if(usuaFlagIneditableBool){
+			setUsuaFlagIneditable(Constant.SI_db);
+		}else{
+			setUsuaFlagIneditable(Constant.NO_db);
+		}		
+		this.usuaFlagIneditableBool = usuaFlagIneditableBool;
 	}		
 	
 	
@@ -197,5 +244,7 @@ public class SysUsuario extends EntidadSup{
 //
 //		return sysUsuarioAsignado;
 //	}
+	
+	
 
 }
